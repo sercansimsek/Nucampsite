@@ -1,19 +1,32 @@
-console.log("javascript connected!");
 const carousel = new bootstrap.Carousel("#homeCarousel", {
-    interval: 2000,
+    interval: 5000,
     pause: false
 });
-// when the pause button is clicked, pause the carousel
-const carouselPause = document.getElementById("carouselPause");
-carouselPause.addEventListener("click", function() {
-    console.log("pausing the carousel");
-    carousel.pause();
+const carouselButton = document.getElementById("carouselButton");
+const faIcon = document.getElementById("faButton");
+carouselButton.addEventListener("click", function() {
+    if (faIcon.classList.contains("fa-pause")) {
+        faIcon.classList.remove("fa-pause");
+        faIcon.classList.add("fa-play");
+        carousel.pause();
+    } else {
+        faIcon.classList.remove("fa-play");
+        faIcon.classList.add("fa-pause");
+        carousel.cycle();
+    }
 });
-// when the play button is clicked, begin cycling through the images
-const carouselPlay = document.getElementById("carouselPlay");
-carouselPlay.addEventListener("click", function() {
-    console.log("cycle the carousel");
-    carousel.cycle();
-});
+async function fetchWeather() {
+    try {
+        const apiKey = process.env.OPEN_WEATHER_API_KEY;
+        const city = "Bratislava";
+        let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+        const response = await fetch(url);
+        const data = await response.json();
+        console.log(data);
+    } catch (error) {
+        console.error("Something went wrong!", error);
+    }
+}
+fetchWeather();
 
 //# sourceMappingURL=aboutus.09863fc6.js.map

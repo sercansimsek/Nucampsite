@@ -17,3 +17,19 @@ carouselButton.addEventListener("click", function () {
     carousel.cycle();
   }
 });
+
+async function fetchWeather() {
+  try {
+    const apiKey = process.env.OPEN_WEATHER_API_KEY;
+    const city = "Bratislava";
+    let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+
+    const response = await fetch(url);
+    const data = await response.json();
+    console.log(data);
+  } catch (error) {
+    console.error("Something went wrong!", error);
+  }
+}
+
+fetchWeather();
