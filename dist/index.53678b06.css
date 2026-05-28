@@ -1,6 +1,7 @@
 #weather {
   color: #fff;
   align-items: center;
+  margin-left: 1rem;
   display: flex;
 }
 

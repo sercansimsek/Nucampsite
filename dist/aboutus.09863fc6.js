@@ -1,6 +1,7 @@
 const weatherIcon = document.querySelector("#weather-icon");
 const weatherTemp = document.querySelector("#weather-temp");
 const weatherDescription = document.querySelector("#weather-description");
+const weatherCity = document.querySelector("#weather-city");
 const carousel = new bootstrap.Carousel("#homeCarousel", {
     interval: 5000,
     pause: false
@@ -32,6 +33,7 @@ async function fetchWeather() {
     }
 }
 function displayWeather(data) {
+    weatherCity.textContent = `${data.name}`;
     const img = document.createElement("img");
     img.src = `https://openweathermap.org/img/w/${data.weather[0].icon}.png`;
     weatherIcon.appendChild(img);
